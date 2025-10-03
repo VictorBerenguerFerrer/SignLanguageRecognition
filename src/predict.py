@@ -1,4 +1,3 @@
-# predict.py
 import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
@@ -22,7 +21,7 @@ def predict_image(image_path: Path):
     # Leer imagen con OpenCV
     img = cv2.imread(str(image_path.resolve()))
     if img is None:
-        print("❌ No se pudo leer la imagen:", image_path)
+        print("No se pudo leer la imagen:", image_path)
         return None
     
     # Preprocesar igual que en el entrenamiento

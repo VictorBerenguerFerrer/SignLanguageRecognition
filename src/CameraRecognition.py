@@ -15,19 +15,19 @@ with open(encoder_path, "rb") as f:
     le = pickle.load(f)
 
 # ---- CAPTURA DE VIDEO ----
-cap = cv2.VideoCapture(0)  # 0 = cámara por defecto
+cap = cv2.VideoCapture(0)  
 
 if not cap.isOpened():
-    print("❌ No se pudo abrir la cámara")
+    print("No se pudo abrir la cámara")
     exit()
 
 while True:
     ret, frame = cap.read()
     if not ret:
-        print("❌ Error al capturar frame")
+        print("Error al capturar el signo")
         break
 
-    # Preprocesar frame (usar una ROI más pequeña si quieres)
+    # Preprocesar frame 
     img = cv2.resize(frame, (64, 64))
     img = img / 255.0
     img = np.expand_dims(img, axis=0)  # (1,64,64,3)
@@ -41,7 +41,7 @@ while True:
     cv2.putText(frame, f"Letra: {pred_class}", (30, 50),
                 cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
-    cv2.imshow("Reconocimiento de Lengua de Signos", frame)
+    cv2.imshow("Reconocimiento de Lenguaje de Signos", frame)
 
     # Salir con 'q'
     if cv2.waitKey(1) & 0xFF == ord('q'):
